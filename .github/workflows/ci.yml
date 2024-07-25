@@ -1,0 +1,46 @@
+name: CI
+
+# Chạy workflow khi có push hoặc pull request tới nhánh 'main'
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  merge:
+    branches:
+      - main
+
+jobs:
+  build:
+    # Thiết lập môi trường chạy là Ubuntu
+    runs-on: ubuntu-latest
+
+    # Các bước trong job
+    steps:
+      # Checkout mã nguồn
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Thiết lập Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      # Cài đặt dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Kiểm tra code với ESLint
+      - name: Lint code
+        run: npm run lint
+
+      # Chạy tests
+      - name: Run tests
+        run: npm test
+
+      # Build dự án
+      - name: Build project
+        run: npm run build
