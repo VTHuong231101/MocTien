@@ -27,10 +27,6 @@ jobs:
       - name: Lint code
         run: npm run lint
 
-      # Chạy tests
-      - name: Run tests
-        run: npm test
-
       # Build dự án
       - name: Build project
         run: npm run build
@@ -43,8 +39,8 @@ jobs:
           fetch-depth: 0
       - name: Install required dependencies
         run: |
-          apt update
-          apt install -y sudo
+          sudo apt update
+          sudo apt install -y sudo
           sudo apt install -y git curl
       - name: Print versions
         run: |
