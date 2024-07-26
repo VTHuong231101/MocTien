@@ -1,16 +1,13 @@
 name: CI
 
-# Chạy workflow khi có push hoặc pull request tới nhánh 'main'
+# Chạy workflow khi có push hoặc pull request tới nhánh 'master'
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
-  merge:
-    branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -59,8 +56,6 @@ jobs:
           apt update
           apt install -y sudo
           sudo apt install -y git curl
-          curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-          sudo DEBIAN_FRONTEND=noninteractive apt install -y nodejs
       - name: Print versions
         run: |
           git --version
@@ -79,3 +74,4 @@ jobs:
       - name: Validate PR commits with commitlint
         if: github.event_name == 'pull_request'
         run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
+        
