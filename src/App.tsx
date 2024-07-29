@@ -1,8 +1,8 @@
-import './App.css'
+import './App.css';
+import { HeaderLayout } from './layout/default-layout/header-layout';
 
 function App() {
-  
-  return
+  return <HeaderLayout />;
 }
 
-export default App
+export default App;
