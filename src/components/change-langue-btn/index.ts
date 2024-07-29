@@ -1,1 +1,1 @@
-export * from "./change-langue-btn"
+export * from './change-langue-btn';
